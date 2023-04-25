@@ -1,3 +1,21 @@
-class Movie {}
+import { PrimaryGeneratedColumn, Column, Entity } from "typeorm";
+
+@Entity("movies")
+class Movie {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ type: "varchar", length: 50, unique: true })
+  name: string;
+
+  @Column({ type: "text" })
+  description: string;
+
+  @Column({ type: "int" })
+  duration: number;
+
+  @Column({ type: "int" })
+  price: number;
+}
 
 export default Movie;
