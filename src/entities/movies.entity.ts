@@ -1,4 +1,4 @@
-import { PrimaryGeneratedColumn, Column, Entity } from "typeorm";
+import { PrimaryGeneratedColumn, Column, Entity, Check } from "typeorm";
 
 @Entity("movies")
 class Movie {
@@ -8,8 +8,8 @@ class Movie {
   @Column({ type: "varchar", length: 50, unique: true })
   name: string;
 
-  @Column({ type: "text" })
-  description: string;
+  @Column({ type: "text", nullable: true })
+  description: string | null;
 
   @Column({ type: "int" })
   duration: number;
