@@ -1,4 +1,4 @@
-import { PrimaryGeneratedColumn, Column, Entity, Check } from "typeorm";
+import { PrimaryGeneratedColumn, Column, Entity } from "typeorm";
 
 @Entity("movies")
 class Movie {
@@ -9,7 +9,7 @@ class Movie {
   name: string;
 
   @Column({ type: "text", nullable: true })
-  description: string | null;
+  description?: string | null | undefined;
 
   @Column({ type: "int" })
   duration: number;

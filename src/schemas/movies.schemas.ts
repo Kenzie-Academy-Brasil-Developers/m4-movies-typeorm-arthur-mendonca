@@ -3,7 +3,7 @@ import { z } from "zod";
 const movieSchemaResponse = z.object({
   id: z.number(),
   name: z.string(),
-  description: z.string().nullable(),
+  description: z.string().optional().nullable(),
   duration: z.number(),
   price: z.number(),
 });

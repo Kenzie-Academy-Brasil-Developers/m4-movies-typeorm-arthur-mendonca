@@ -1,7 +1,8 @@
 import { TMovieRequest, TMovieResponse } from "../interfaces/movies.interfaces";
-import { DeepPartial, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Movie } from "../entities";
+import { movieSchemaResponse } from "../schemas/movies.schemas";
 
 const createMovieService = async (
   movieData: TMovieRequest
@@ -12,7 +13,10 @@ const createMovieService = async (
 
   await movieRepo.save(createMovie);
 
-  return createMovie;
+  const returnCreatedMovie: TMovieResponse =
+    movieSchemaResponse.parse(createMovie);
+
+  return returnCreatedMovie;
 };
 
 export default createMovieService;
