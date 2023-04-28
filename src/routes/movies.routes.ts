@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createMovieController,
+  deleteMovieController,
   listAllMoviesController,
   updateMovieDataController,
 } from "../controllers/movies.controllers";
@@ -25,11 +26,10 @@ moviesRoutes.get("", listAllMoviesController); //listar todos os filmes cadastra
 moviesRoutes.patch(
   "/:id",
   checkIdMiddleware,
-  checkIfMovieNameAlreadyExistsMiddleware,
   validateRequestBodyMiddleware(movieSchemaUpdateValidation),
-
+  checkIfMovieNameAlreadyExistsMiddleware,
   updateMovieDataController
 ); //atualizar um filme"
-moviesRoutes.delete("/:id"); //deletar um filme
+moviesRoutes.delete("/:id", checkIdMiddleware, deleteMovieController); //deletar um filme
 
 export default moviesRoutes;

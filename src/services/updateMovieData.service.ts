@@ -24,7 +24,7 @@ const UpdateMovieDataService = async (
 
   await movieRepo.save(updatedMovieData);
 
-  const dataToReturn: TMovieResponse =
+  const dataToReturn: TMovieUpdateValidation =
     movieSchemaResponse.parse(updatedMovieData);
 
   return dataToReturn;

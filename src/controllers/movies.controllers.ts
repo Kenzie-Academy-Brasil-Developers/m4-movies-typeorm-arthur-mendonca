@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import createMovieService from "../services/createMovie.services";
-import listAllMoviesService from "../services/listAllMovies.services";
-import UpdateMovieDataService from "../services/updateMovieData.services";
+import createMovieService from "../services/createMovie.service";
+import listAllMoviesService from "../services/listAllMovies.service";
+import UpdateMovieDataService from "../services/updateMovieData.service";
+import deleteMovieService from "../services/deleteMovie.service";
 
 const createMovieController = async (
   request: Request,
@@ -15,7 +16,10 @@ const listAllMoviesController = async (
   request: Request,
   response: Response
 ): Promise<Response> => {
-  const listAllMovies = await listAllMoviesService();
+  const page: number | undefined = +request.query.page!;
+  const perPage: number | undefined = +request.query.perPage!;
+
+  const listAllMovies = await listAllMoviesService(page, perPage);
 
   return response.status(200).json(listAllMovies);
 };
@@ -31,8 +35,20 @@ const updateMovieDataController = async (
   return response.status(200).json(updateMovieData);
 };
 
+const deleteMovieController = async (
+  request: Request,
+  response: Response
+): Promise<Response> => {
+  const movieId = Number(request.params.id);
+
+  const deleteAMovie = await deleteMovieService(movieId);
+
+  return response.status(204).send();
+};
+
 export {
   createMovieController,
   listAllMoviesController,
   updateMovieDataController,
+  deleteMovieController,
 };

@@ -1,0 +1,8 @@
+    √ Success: Must be able to update a movie - Full body (53 ms)
+
+    >>> × Success: Must be able to update a movie - Partial information (15 ms)
+    
+    √ Error: Must not be able to update a movie - ID doesn't exists (9 ms) 
+    √ Error: Must not be able to update a movie - Name already exists (8 ms)
+    √ Error: Must not be able to update a movie - Invalid body (10 ms)
+    √ Error: Must not be able to update a movie - Invalid body 2 (13 ms) 
