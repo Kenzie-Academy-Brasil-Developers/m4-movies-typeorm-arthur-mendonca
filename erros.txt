@@ -1,8 +1,9 @@
-    √ Success: Must be able to update a movie - Full body (53 ms)
+ PASS  src/__tests__/integration/update.route.spec.ts
+ PASS  src/__tests__/integration/readRoute/pagination/perPage.route.spec.ts
+ PASS  src/__tests__/integration/readRoute/sortAndOrder/withoutSort.route.spec.ts
+ PASS  src/__tests__/integration/readRoute/pagination/page.route.spec.ts
+ PASS  src/__tests__/integration/create.route.spec.ts
+ PASS  src/__tests__/integration/readRoute/pagination/pageAndPerPage.route.spec.ts
+ PASS  src/__tests__/integration/destroy.route.spec.ts
 
-    >>> × Success: Must be able to update a movie - Partial information (15 ms)
-    
-    √ Error: Must not be able to update a movie - ID doesn't exists (9 ms) 
-    √ Error: Must not be able to update a movie - Name already exists (8 ms)
-    √ Error: Must not be able to update a movie - Invalid body (10 ms)
-    √ Error: Must not be able to update a movie - Invalid body 2 (13 ms) 
+ 

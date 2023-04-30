@@ -9,7 +9,7 @@ class Movie {
   name: string;
 
   @Column({ type: "text", nullable: true })
-  description?: string | null | undefined;
+  description: string | null | undefined;
 
   @Column({ type: "int" })
   duration: number;

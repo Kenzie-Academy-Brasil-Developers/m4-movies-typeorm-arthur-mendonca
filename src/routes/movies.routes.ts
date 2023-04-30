@@ -13,6 +13,8 @@ import {
   movieSchemaUpdateValidation,
 } from "../schemas/movies.schemas";
 import checkIdMiddleware from "../middlewares/checkId.middleware";
+import { paginationRulesMiddleware } from "../middlewares/paginationRules.middlewere";
+// import { paginationRulesMiddleware } from "../middlewares/paginationRules.middlewere";
 
 const moviesRoutes: Router = Router();
 
@@ -22,12 +24,11 @@ moviesRoutes.post(
   checkIfMovieNameAlreadyExistsMiddleware,
   createMovieController
 ); //cadastrar um novo filme
-moviesRoutes.get("", listAllMoviesController); //listar todos os filmes cadastrados
+moviesRoutes.get("", paginationRulesMiddleware, listAllMoviesController); //listar todos os filmes cadastrados
 moviesRoutes.patch(
   "/:id",
   checkIdMiddleware,
   validateRequestBodyMiddleware(movieSchemaUpdateValidation),
-  checkIfMovieNameAlreadyExistsMiddleware,
   updateMovieDataController
 ); //atualizar um filme"
 moviesRoutes.delete("/:id", checkIdMiddleware, deleteMovieController); //deletar um filme

@@ -3,14 +3,16 @@ import { z } from "zod";
 const movieSchemaResponse = z.object({
   id: z.number(),
   name: z.string().max(50),
-  description: z.string().optional().nullable(),
+  description: z.string().nullish(),
   duration: z.number().positive(),
   price: z.number().int(),
 });
 
+const responseSchema = movieSchemaResponse.partial();
+
 const movieSchemaRequest = movieSchemaResponse.omit({ id: true });
 
-const movieListSchemaResponse = z.array(movieSchemaResponse);
+const movieListSchemaResponse = z.array(responseSchema);
 
 const movieSchemaUpdate = z.object({
   name: z.string(),
@@ -33,4 +35,5 @@ export {
   movieListSchemaResponse,
   movieSchemaUpdate,
   movieSchemaUpdateValidation,
+  responseSchema,
 };

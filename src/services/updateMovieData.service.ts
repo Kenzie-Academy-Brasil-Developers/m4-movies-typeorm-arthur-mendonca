@@ -5,9 +5,16 @@ import {
 } from "../interfaces/movies.interfaces";
 import { AppDataSource } from "../data-source";
 import Movie from "../entities/movies.entity";
-import { movieSchemaResponse } from "../schemas/movies.schemas";
+import { movieSchemaResponse, movieSchemaUpdateValidation } from "../schemas/movies.schemas";
+import { AppError } from "../errors";
+
+interface movieNameValidation {
+  name?: string | undefined 
+}
+  
 
 const UpdateMovieDataService = async (
+  movieName: movieNameValidation,
   newMovieData: TMovieUpdateRequest,
   movieId: number
 ): Promise<TMovieUpdateValidation> => {
@@ -17,6 +24,10 @@ const UpdateMovieDataService = async (
     id: movieId,
   });
 
+  if (currentMovieData?.name === movieName){
+    throw new AppError("Movie already exists.", 409)
+  }
+
   const updatedMovieData: Movie = movieRepo.create({
     ...currentMovieData,
     ...newMovieData,
@@ -25,7 +36,7 @@ const UpdateMovieDataService = async (
   await movieRepo.save(updatedMovieData);
 
   const dataToReturn: TMovieUpdateValidation =
-    movieSchemaResponse.parse(updatedMovieData);
+  movieSchemaUpdateValidation.parse(updatedMovieData);
 
   return dataToReturn;
 };

@@ -20,6 +20,15 @@ type TMovieUpdateRequest = DeepPartial<TMovieUpdate>;
 
 type TMovieUpdateValidation = z.infer<typeof movieSchemaUpdateValidation>;
 
+type TMovieArrayResponse = z.infer<typeof movieListSchemaResponse>;
+
+type TMoviePagination = {
+  prevPage: string | null;
+  nextPage: string | null;
+  count: number | null;
+  data: TMovieArrayResponse;
+};
+
 export {
   TMovieResponse,
   TMovieRequest,
@@ -27,4 +36,6 @@ export {
   TMovieUpdate,
   TMovieUpdateRequest,
   TMovieUpdateValidation,
+  TMoviePagination,
+  TMovieArrayResponse,
 };
